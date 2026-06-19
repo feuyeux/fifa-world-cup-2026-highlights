@@ -1,25 +1,20 @@
-/target/
+# Editor / OS noise
 .DS_Store
 .idea/
 .vscode/
 .qoder/
+
+# Build artifacts
+/target/
 __pycache__/
 *.py[cod]
 
-# Config files that may contain API keys
-nimia.yaml
-
-# SQLite database files
+# Databases
 *.sqlite
 *.sqlite-wal
 *.sqlite-shm
 
-# Generated experiment logs
-gefsi/logs/
-.antigravitycli/
-.superpowers/
-test_crops/
-*.py
-
-# FIFA World Cup 2026 highlights — binary videos excluded from git (push the index/manifest only)
+# FIFA World Cup 2026 highlights — videos live in D:\2026-worldcup but
+# are excluded from git. The repository ships the manifest (README/AGENTS/SKILL)
+# only. See README § "命名规范" for the file format.
 *.mp4
