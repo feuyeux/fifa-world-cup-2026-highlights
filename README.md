@@ -27,7 +27,7 @@ M{赛事编号} {主队}-{客队} {主队比分}-{客队比分} [{YouTube 视频
 
 ---
 
-## 当前已收录（24 / 31 公开，72 场小组赛中）
+## 当前已收录（53 / 63 playlist 公开，72 场小组赛中）
 
 | 编号 | 比赛 | 比分 | 小组 | 时间 (BJT) | 文件 |
 |:--:|:--|:--:|:--:|:--|:--|
@@ -55,8 +55,37 @@ M{赛事编号} {主队}-{客队} {主队比分}-{客队比分} [{YouTube 视频
 | M22 | 英格兰 - 克罗地亚 | 4-2 | L | 06/18 04:00 | `M22 England-Croatia 4-2 [ynqGWHJPkuQ].mp4` |
 | M23 | 葡萄牙 - 刚果民主共和国 | 1-1 | K | 06/18 01:00 | `M23 Portugal-Congo DR 1-1 [fJrctBM0poE].mp4` |
 | M24 | 乌兹别克斯坦 - 哥伦比亚 | 1-3 | K | 06/18 10:00 | `M24 Uzbekistan-Colombia 1-3 [cjsFUxVHAX0].mp4` |
+| M25 | 捷克 - 南非 | 1-1 | A | 06/19 00:00 | `M25 Czechia-South Africa 1-1 [C_2Lx8Wg1kg].mp4` |
+| M26 | 瑞士 - 波黑 | 4-1 | B | 06/19 03:00 | `M26 Switzerland-Bosnia and Herzegovina 4-1 [c9wbxaKBu2E].mp4` |
+| M27 | 加拿大 - 卡塔尔 | 6-0 | B | 06/19 06:00 | `M27 Canada-Qatar 6-0 [HTR0DIvBYlg].mp4` |
+| M28 | 墨西哥 - 韩国 | 1-0 | A | 06/19 09:00 | `M28 Mexico-Korea Republic 1-0 [o_AAtfdVp3Y].mp4` |
+| M29 | 巴西 - 海地 | 3-0 | C | 06/20 08:30 | `M29 Brazil-Haiti 3-0 [lz3_atghfmY].mp4` |
+| M30 | 苏格兰 - 摩洛哥 | 0-1 | C | 06/20 06:00 | `M30 Scotland-Morocco 0-1 [ACKeXJdm5us].mp4` |
+| M31 | 土耳其 - 巴拉圭 | 0-1 | D | 06/20 11:00 | `M31 Turkiye-Paraguay 0-1 [atWtyemTWQ0].mp4` |
+| M32 | 美国 - 澳大利亚 | 2-0 | D | 06/20 03:00 | `M32 USA-Australia 2-0 [tXxvgvgMiRg].mp4` |
+| M33 | 德国 - 科特迪瓦 | 2-1 | E | 06/21 04:00 | `M33 Germany-Cote d'Ivoire 2-1 [_3PYS5oCgvQ].mp4` |
+| M34 | 厄瓜多尔 - 库拉索 | 0-0 | E | 06/21 08:00 | `M34 Ecuador-Curacao 0-0 [nYoSztBShPE].mp4` |
+| M35 | 荷兰 - 瑞典 | 5-1 | F | 06/21 01:00 | `M35 Netherlands-Sweden 5-1 [tm1PRvtp1PM].mp4` |
+| M37 | 乌拉圭 - 佛得角 | 2-2 | H | 06/22 06:00 | `M37 Uruguay-Cabo Verde 2-2 [eh20EVuWFFI].mp4` |
+| M38 | 西班牙 - 沙特阿拉伯 | 4-0 | H | 06/22 00:00 | `M38 Spain-Saudi Arabia 4-0 [j0BQN0nJ7mM].mp4` |
+| M39 | 比利时 - 伊朗 | 0-0 | G | 06/22 03:00 | `M39 Belgium-IR Iran 0-0 [4zYJyJY57i8].mp4` |
+| M40 | 新西兰 - 埃及 | 1-3 | G | 06/22 09:00 | `M40 New Zealand-Egypt 1-3 [8OYG-yIFbFI].mp4` |
+| M41 | 挪威 - 塞内加尔 | 3-2 | I | 06/23 08:00 | `M41 Norway-Senegal 3-2 [nlghqbCqbe0].mp4` |
+| M42 | 法国 - 伊拉克 | 3-0 | I | 06/23 05:00 | `M42 France-Iraq 3-0 [XejscwNpvLU].mp4` |
+| M43 | 阿根廷 - 奥地利 | 2-0 | J | 06/23 01:00 | `M43 Argentina-Austria 2-0 [M4Ccsmk3gcE].mp4` |
+| M44 | 约旦 - 阿尔及利亚 | 1-2 | J | 06/23 11:00 | `M44 Jordan-Algeria 1-2 [Ydxmm_-PUo0].mp4` |
+| M45 | 英格兰 - 加纳 | 0-0 | L | 06/24 04:00 | `M45 England-Ghana 0-0 [Qe-fptt6wXs].mp4` |
+| M46 | 巴拿马 - 克罗地亚 | 0-1 | L | 06/24 07:00 | `M46 Panama-Croatia 0-1 [Y5PJGL-8qyM].mp4` |
+| M47 | 葡萄牙 - 乌兹别克斯坦 | 5-0 | K | 06/24 01:00 | `M47 Portugal-Uzbekistan 5-0 [kwbH2dm1AXo].mp4` |
+| M48 | 哥伦比亚 - 刚果民主共和国 | 1-0 | K | 06/24 10:00 | `M48 Colombia-Congo DR 1-0 [JTGXHmxlXHc].mp4` |
+| M49 | 苏格兰 - 巴西 | 0-3 | C | 06/25 06:00 | `M49 Scotland-Brazil 0-3 [oj5LlMvV0qk].mp4` |
+| M50 | 摩洛哥 - 海地 | 4-2 | C | 06/25 06:00 | `M50 Morocco-Haiti 4-2 [ZU2ssk6Bmg8].mp4` |
+| M51 | 瑞士 - 加拿大 | 2-1 | B | 06/25 03:00 | `M51 Switzerland-Canada 2-1 [C4XX3Crp5Uk].mp4` |
+| M52 | 波黑 - 卡塔尔 | 3-1 | B | 06/25 03:00 | `M52 Bosnia and Herzegovina-Qatar 3-1 [-E4Mtblw9es].mp4` |
+| M53 | 捷克 - 墨西哥 | 0-3 | A | 06/25 09:00 | `M53 Czechia-Mexico 0-3 [h9wH7diGNC0].mp4` |
+| M54 | 南非 - 韩国 | 1-0 | A | 06/25 09:00 | `M54 South Africa-Korea Republic 1-0 [cZoaEEYtKhE].mp4` |
 
-**未收录（7 场 / 31）** — YouTube 播放列表第 25–31 条标题为 `NA`（FIFA 设为私享/已删），需上传者授权才能下载。其余 M25–M72 等 FIFA 后续上传到播放列表。
+**未收录（19 场 / 72）** — playlist 共 63 条：53 条公开已全部收录；10 条 NA（playlist #54–#63：5 条已被上传者删除 + 5 条 FIFA 私享）需上传者账号 cookies，无法用本工作流下载。缺 M36 突尼斯-日本（FIFA 还没上传到 playlist）+ M55–M72 18 场后续比赛（赛程在 06/26–06/28，待 FIFA 后续上传）。
 
 ---
 

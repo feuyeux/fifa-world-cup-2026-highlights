@@ -190,6 +190,7 @@ with open(fp, 'w', encoding='utf-8') as f:
 
 ## 已知坑
 
+- **git-bash MSYS 路径转换会吞掉 `/d/...` 前导斜杠**：当 `-o "/d/2026-worldcup/${fname}"` 传给 yt-dlp 时，MSYS 自动把 `/d/foo` 改成 `\doo`（相对路径），文件会落到 `D:\D6-worldcup\`（一个鬼目录）。**修复**：脚本顶部加 `export MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL='*'`，并且 `-o` 用相对文件名（`cd /d/2026-worldcup` 后直接 `-o "${fname}"`），不写绝对路径。验证：日志里看到 `Destination: \d\...` 立即停手。
 - **`terminal` 工具跑在 Linux 沙箱看不到 D:**。所有 ls/cd/yt-dlp 不能用 `cd /d/...`，必须用 `subprocess.run([r'D:\Program Files\Git\usr\bin\bash.exe', '-lc', '...'])` 走 Windows 宿主 + git-bash。文件读写/glob/listdir 用 `execute_code` 走 Windows 宿主。
 - **`patch` / `read_file` 工具对 D: 路径间歇性 File not found**（memory 提过，路径含非 ASCII 段时易触发）。读写 README/AGENTS.md 用 `with open(path, 'r/w', encoding='utf-8')`，不要用 `read_file` / `patch`。
 - **git-bash `-o` 路径必须是 `/d/2026-worldcup/...` POSIX 风格**，不能写 `D:\...` Windows 风格。如果只给单文件名（无路径）会落到 git-bash 的 `pwd` 目录（实测是 `/d/2026-worldcup`）——OK 的；但**绝对不要**写 `D:\...` 反斜杠形式，yt-dlp 会当成相对路径建出 `D:\D\...` 这种鬼目录。
@@ -200,3 +201,4 @@ with open(fp, 'w', encoding='utf-8') as f:
 - **yt-dlp 标题里"胜者在前、比分胜-负"**——视频写 `Colombia 3-1 Uzbekistan`、赛程表写 `乌兹别克斯坦 vs 哥伦比亚`、比分按主-客方向 = `1-3`。**重命名时要从赛程表主客顺序反过来**，主队输了的场次比分方向也要翻。
 - **私享/已删条目** `--flat-playlist` 拿到的 title 是字面 `NA`，无法定位 M{NN}，跳过并报告。
 - **同一场被重新上传**（视频 ID 变）保留旧文件 + 新增一行，README 靠 `[VIDEO_ID]` 区分；不要去重删旧。
+- **`--cookies` 间歇性报 `FileNotFoundError` 但 cookies 文件实际存在**（实测 M53 那次：路径 `D:\download\www.youtube.com_cookies.txt` 1609 bytes 在的，yt-dlp `cookies.py:1305` 还是抛 No such file）。**症状**：stderr 出现 `FileNotFoundError: [Errno 2] No such file or directory: '/d/download/www.youtube.com_cookies.txt'`，视频流本身能下到 47% 左右时进程 rc=1 退出、留下 `.part` 残骸。**根因疑似**：yt-dlp 早期 cookies 解析阶段路径转换异常，与 git-bash 的 MSYS 路径转发有关。**修复**：下次批量下载时直接 `--no-cookies`（公开集锦不要求登录，YouTube 对未登录请求只发低码率但仍可下载）。如果必须保留 cookies，单独文件用 `with open(p,'rb').read()` 校验实际可读后重试；或换 Windows 原生 cmd 跑 yt-dlp 而不是 git-bash。
