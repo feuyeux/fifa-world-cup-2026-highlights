@@ -13,9 +13,10 @@ description: Pull new FIFA World Cup 2026 highlight videos from the official You
 
 - **去重判据 = YouTube 视频 ID**，写在文件名 `[\w_-]{11}` 段里。**不**用"主队+比分"判重——多场可能同主队或同比分，ID 才是唯一键。
 - **下载即终态命名**：用 yt-dlp 的 `-o` 直接落 `M{NN} {主队}-{客队} {比分} [{VIDEO_ID}].mp4`，**不**先下到 `NN - Highlights ｜ ...` 中间态再 os.rename。中途断电/中断也不会留 .part 残骸。
+- **默认用 `-S "res:720"`** 而非默认 1080p：1080p AV1 + Opus 单条 40-60MB、且并发时单进程速度被压到 50-75 KiB/s；720p 单条 17-35MB、5 并发单进程 ~600 KiB/s、120s 内下完，画质对比赛集锦完全够用。
 - **主队在前、比分按主-客方向**（不是胜-负方向）。`M18 Iraq-Norway 1-4` 这种主队输了的，比分仍是 `1-4`。视频标题里 FIFA 是"胜者在前、胜-负方向"，重命名时要从赛程表主客顺序反过来。
 - **playlist_index ≠ 赛程 M{NN}**。实测 playlist 第 1 条 = M24 (Uzbekistan-Colombia)，第 24 条 = M01 (Mexico-South Africa)——FIFA 把最近比赛排最前。**必须用视频标题里的两支队伍名查赛程表来定位 M{NN}**，不能假设 playlist_index = M 编号。
-- 编号 01–72 = 赛程表前 72 场小组赛。赛程表：`D:\coding\fifa-world-cup-2026\schedule\match schedule.md`，段 `## 全部 72 场 小组赛`（5 列：`#, 日期/时间, 主队, 客队, 小组`）。**注意**：文件后面还有 `## A 第一组` 起的"分组详情"段（5 列但第 5 列是"球场"不是"小组"）——解析时**只**读 `## 全部 72 场 小组赛` 段，限定到下一个 `## ` 标题。
+- 编号 01–72 = 赛程表前 72 场小组赛。赛程表：`D:\coding\fifa-world-cup-2026\schedule\match schedule.md`，段 `## 全部 72 场 小组赛（按日期排序）`（**4 列：日期/主队/客队/小组，无 `#` 列** — M{NN} 用行号 1-based 推，第 1 行 = M01，第 N 行 = M{N}）。**注意**：文件后面还有 `## A 第一组` 起的"分组详情"段（5 列但第 5 列是"球场"不是"小组"）——解析时**只**读 `## 全部 72 场` 段，限定到下一个 `## ` 标题。
 - 播放列表里私享/已删的条目 `--flat-playlist` 拿到的标题是 `NA`，无法定位到 M{NN}，跳过并报告。
 - 同一场被重新上传时（视频 ID 变）保留旧文件 + 新增一行，README 靠 `[VIDEO_ID]` 区分。
 
@@ -112,16 +113,17 @@ schedule = subprocess.run(['cmd', '/c', 'type', r'D:\coding\fifa-world-cup-2026\
 lines = schedule.splitlines()
 start = end = None
 for i, ln in enumerate(lines):
-    if ln.strip() == '## 全部 72 场 小组赛':
+    if ln.strip().startswith('## 全部 72 场'):
         start = i
     elif start is not None and ln.startswith('## ') and i > start:
         end = i; break
-rows = {}
+rows = []
+# 只读 `## 全部 72 场 小组赛` 段（4 列：日期/主/客/组，**无 #**）
 for ln in lines[start:end]:
-    m = re.match(r'^\|\s*(\d+)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([A-L])\s*\|\s*$', ln)
+    m = re.match(r'^\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([A-L])\s*\|\s*$', ln)
     if m:
-        rows[int(m.group(1))] = (m.group(3).strip(), m.group(4).strip(), m.group(5).strip(), m.group(2).strip())
-# rows[num] = (主队, 客队, 小组, BJT)
+        rows.append((m.group(2).strip(), m.group(3).strip(), m.group(4).strip(), m.group(1).strip()))
+# rows[idx] = (主队, 客队, 小组, BJT) — idx 0-based 对应 M{idx+1}
 ```
 
 ### 5. 用 git-bash 跑 yt-dlp，下到最终文件名
@@ -202,3 +204,5 @@ with open(fp, 'w', encoding='utf-8') as f:
 - **私享/已删条目** `--flat-playlist` 拿到的 title 是字面 `NA`，无法定位 M{NN}，跳过并报告。
 - **同一场被重新上传**（视频 ID 变）保留旧文件 + 新增一行，README 靠 `[VIDEO_ID]` 区分；不要去重删旧。
 - **`--cookies` 间歇性报 `FileNotFoundError` 但 cookies 文件实际存在**（实测 M53 那次：路径 `D:\download\www.youtube.com_cookies.txt` 1609 bytes 在的，yt-dlp `cookies.py:1305` 还是抛 No such file）。**症状**：stderr 出现 `FileNotFoundError: [Errno 2] No such file or directory: '/d/download/www.youtube.com_cookies.txt'`，视频流本身能下到 47% 左右时进程 rc=1 退出、留下 `.part` 残骸。**根因疑似**：yt-dlp 早期 cookies 解析阶段路径转换异常，与 git-bash 的 MSYS 路径转发有关。**修复**：下次批量下载时直接 `--no-cookies`（公开集锦不要求登录，YouTube 对未登录请求只发低码率但仍可下载）。如果必须保留 cookies，单独文件用 `with open(p,'rb').read()` 校验实际可读后重试；或换 Windows 原生 cmd 跑 yt-dlp 而不是 git-bash。
+- **yt-dlp 退出阶段 `save_cookies()` 也可能抛 `FileNotFoundError` → rc=1**，但此时 download + Merger 都已完成，**视频文件正常落地**。**判定标准**：`os.path.exists(目标.mp4)` 且大小 > 5 MB 即视为成功，不要被 rc=1 误导去重下。根因同上（MSYS 路径转换在 `__exit__` 阶段再次异常）。**配套**：`os.path.exists` 大小 > 5 MB 视为成功时**仍然要 `taskkill //F //IM yt-dlp.exe`** 清理可能残留的 .part（虽然本次测试几乎不发生）。
+- **yt-dlp 并发数 5 最优**：单进程 ~600 KiB/s；10 并发被压到 50-75 KiB/s 反而更慢，且 5 分钟 timeout 容易把 .part 残骸留一半。脚本里 5 个 Popen/terminal background 同时跑，120s 内全部下完 17-25 MB 的 720p 集锦。如果想做"一次性补很多"，分批 5 个是平衡点。

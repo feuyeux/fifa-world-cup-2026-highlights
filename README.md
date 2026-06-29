@@ -27,7 +27,7 @@ M{赛事编号} {主队}-{客队} {主队比分}-{客队比分} [{YouTube 视频
 
 ---
 
-## 当前已收录（53 / 63 playlist 公开，72 场小组赛中）
+## 当前已收录（71 / 78 playlist 公开，72 场小组赛中）
 
 | 编号 | 比赛 | 比分 | 小组 | 时间 (BJT) | 文件 |
 |:--:|:--|:--:|:--:|:--|:--|
@@ -84,8 +84,26 @@ M{赛事编号} {主队}-{客队} {主队比分}-{客队比分} [{YouTube 视频
 | M52 | 波黑 - 卡塔尔 | 3-1 | B | 06/25 03:00 | `M52 Bosnia and Herzegovina-Qatar 3-1 [-E4Mtblw9es].mp4` |
 | M53 | 捷克 - 墨西哥 | 0-3 | A | 06/25 09:00 | `M53 Czechia-Mexico 0-3 [h9wH7diGNC0].mp4` |
 | M54 | 南非 - 韩国 | 1-0 | A | 06/25 09:00 | `M54 South Africa-Korea Republic 1-0 [cZoaEEYtKhE].mp4` |
+| M55 | 厄瓜多尔 - 德国 | 2-1 | E | 06/26 04:00 | `M55 Ecuador-Germany 2-1 [TImmPYoLE-8].mp4` |
+| M56 | 库拉索 - 科特迪瓦 | 0-2 | E | 06/26 04:00 | `M56 Curacao-Cote d'Ivoire 0-2 [vDLtuaCoIb0].mp4` |
+| M57 | 日本 - 瑞典 | 1-1 | F | 06/26 07:00 | `M57 Japan-Sweden 1-1 [BppGXEZbiy4].mp4` |
+| M58 | 突尼斯 - 荷兰 | 1-3 | F | 06/26 07:00 | `M58 Tunisia-Netherlands 1-3 [oHYtLWbrwUo].mp4` |
+| M59 | 土耳其 - 美国 | 3-2 | D | 06/26 10:00 | `M59 Türkiye-USA 3-2 [XnDs5rgXgFM].mp4` |
+| M60 | 巴拉圭 - 澳大利亚 | 0-0 | D | 06/26 09:00 | `M60 Paraguay-Australia 0-0 [wZVzHTl__ck].mp4` |
+| M61 | 挪威 - 法国 | 1-4 | I | 06/27 03:00 | `M61 Norway-France 1-4 [ABdniNBWtRs].mp4` |
+| M62 | 塞内加尔 - 伊拉克 | 5-0 | I | 06/27 03:00 | `M62 Senegal-Iraq 5-0 [6N2BzwoMrCw].mp4` |
+| M63 | 佛得角 - 沙特阿拉伯 | 0-0 | H | 06/27 08:00 | `M63 Cabo Verde-Saudi Arabia 0-0 [JE0dqNUIOg4].mp4` |
+| M64 | 乌拉圭 - 西班牙 | 0-1 | H | 06/27 08:00 | `M64 Uruguay-Spain 0-1 [Petu_ouNzr4].mp4` |
+| M65 | 新西兰 - 比利时 | 1-5 | G | 06/27 11:00 | `M65 New Zealand-Belgium 1-5 [zpWO1X2yFjY].mp4` |
+| M66 | 埃及 - 伊朗 | 1-1 | G | 06/27 11:00 | `M66 Egypt-IR Iran 1-1 [EeLUP57yMn4].mp4` |
+| M67 | 巴拿马 - 英格兰 | 0-2 | L | 06/28 05:00 | `M67 Panama-England 0-2 [FHcXnueraKc].mp4` |
+| M68 | 克罗地亚 - 加纳 | 2-1 | L | 06/28 05:00 | `M68 Croatia-Ghana 2-1 [D1wfxmJhA04].mp4` |
+| M69 | 哥伦比亚 - 葡萄牙 | 0-0 | K | 06/28 07:30 | `M69 Colombia-Portugal 0-0 [QhI0dUq1FKY].mp4` |
+| M70 | 刚果民主共和国 - 乌兹别克斯坦 | 3-1 | K | 06/28 07:30 | `M70 Congo DR-Uzbekistan 3-1 [_effg5dZWZc].mp4` |
+| M71 | 阿尔及利亚 - 奥地利 | 3-3 | J | 06/28 10:00 | `M71 Algeria-Austria 3-3 [5Mvh0mqY8ik].mp4` |
+| M72 | 约旦 - 阿根廷 | 1-3 | J | 06/28 10:00 | `M72 Jordan-Argentina 1-3 [M6mpXtMm93M].mp4` |
 
-**未收录（19 场 / 72）** — playlist 共 63 条：53 条公开已全部收录；10 条 NA（playlist #54–#63：5 条已被上传者删除 + 5 条 FIFA 私享）需上传者账号 cookies，无法用本工作流下载。缺 M36 突尼斯-日本（FIFA 还没上传到 playlist）+ M55–M72 18 场后续比赛（赛程在 06/26–06/28，待 FIFA 后续上传）。
+**未收录（1 场 / 72）** — playlist 共 78 条：71 条公开已全部收录；7 条 NA（playlist #72–#78：5 条已被上传者删除 + 2 条 FIFA 私享）需上传者账号 cookies，无法用本工作流下载。缺 M36 突尼斯-日本（F 组，06/22 11:00 — 球已踢完但 FIFA 还没传 playlist，下次拉新时先重新 `--flat-playlist` 一次确认是否已上传）。
 
 ---
 
@@ -99,7 +117,9 @@ cd /d/2026-worldcup
 yt-dlp --no-update \
   --js-runtimes "node:D:\\zoo\\nodejs\\node.exe" \
   --cookies "/d/download/www.youtube.com_cookies.txt" \
-  -f "bv*+ba/b" --merge-output-format mp4 --yes-playlist \
+  -f "bv*+ba/b" --merge-output-format mp4 \
+  -S "res:720" \
+  --yes-playlist \
   -o "%(playlist_index)02d - %(title)s [%(id)s].%(ext)s" \
   --no-overwrites --ignore-errors \
   "https://www.youtube.com/watch?v=gy8h5JJ2b_E&list=PLBRLtDhTHh5o"
@@ -111,7 +131,7 @@ yt-dlp --no-update \
 ### 2. 对照赛程表查赛事编号
 
 打开 `D:\coding\fifa-world-cup-2026\schedule\match schedule.md`，从
-`## 全部 72 场 小组赛` 表格里找到这场比赛的 `#`、主队、客队、最终比分。
+`## 全部 72 场 小组赛（按日期排序）` 表格（4 列：日期/主队/客队/小组，**无 `#` 列**）里按行号 1-based 推 M 编号（第 1 行 = M01，第 N 行 = M{N}），找到这场比赛的主队、客队、最终比分。
 
 ### 3. 重命名
 
@@ -156,5 +176,7 @@ M33 Germany-Côte d'Ivoire 4-2 [abc123XYZ].mp4
 
 - **Chrome 127+ App-Bound Encryption** 让 `--cookies-from-browser chrome` 失败（DPAPI 密钥缺失）。手动导出 cookies.txt 是唯一可靠路径。
 - YouTube 播放列表里的项目 24-31 是 FIFA 后传的私享视频，**无法用本工作流补齐**，除非有上传者账号的 cookies。
-- 下载默认走 1080p AV1 + Opus，单集约 30-60 MB。如果带宽/磁盘紧张，可以加 `-S "res:720"` 让 yt-dlp 优先选 720p。
+- 下载默认走 1080p AV1 + Opus，单集约 30-60 MB。如果带宽/磁盘紧张，可以加 `-S "res:720"` 让 yt-dlp 优先选 720p（实测 17-35 MB，单条 5x 快、画质对比赛集锦够用 — **建议默认加**）。
+- **yt-dlp 退出时报 `FileNotFoundError: '/d/download/www.youtube.com_cookies.txt'` → rc=1**，但 download + Merger 都已完成、视频文件正常落地。**判定标准**：`os.path.exists(目标.mp4)` 且大小 > 5 MB 即视为成功；不要被 rc=1 误导去重下。根因疑似 yt-dlp `__exit__` 阶段 `save_cookies()` 写回时 MSYS 路径转换异常，与 `--cookies` 读取阶段的 `/d/...` 是同一路径。
+- **yt-dlp 并发数 5 最优**：单进程 ~600 KiB/s；10 并发被压到 50-75 KiB/s 反而更慢，且容易 timeout。脚本里起 5 个 Popen/terminal background 跑，120s 内全部下完 17-25 MB 的 720p 集锦。
 - 当同一场集锦被 FIFA 重新上传时（视频 ID 会变），需要保留旧文件不删并新增一行，README 里靠 `[VIDEO_ID]` 字段区分。
