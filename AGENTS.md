@@ -10,18 +10,22 @@
 M{赛事编号} {主队}-{客队} {主队比分}-{客队比分} [{YouTube 视频 ID}].mp4
 ```
 
+- **赛事编号 M{N} 跨阶段续编**：72 场小组赛后从 M73 起继续接 1/16、1/8、半决赛、决赛。文件名前缀**永远**只有 `M{数字}`，**不**嵌 stage 标签（如 `R16`/`QF`/`SF`/`F`）。stage 区分靠 README 表格列。
+- **点球胜负比分**用 `(胜者总)主-客(胜者总)` 格式，与 FIFA YouTube 标题一致（例：`Germany-Paraguay (3)1-1(4)`）。
 - 赛事编号与赛程表 `D:\coding\fifa-world-cup-2026\schedule\match schedule.md` 一致
-- 主队在前，比分按主-客方向
+- 主队在前，比分按主-客方向（不是胜-负方向）
 - 文件按编号升序排列（等同于比赛时间顺序）
 
-## 补全新视频工作流
+## 去重规则（防 playlist 回填陷阱）
 
-1. **下载**：在 `D:\2026-worldcup\` 运行 yt-dlp（保留已下载的，只下新的）
-2. **查编号**：对照赛程表找到赛事编号、主队、客队、最终比分
-3. **重命名**：按命名规范重命名文件
-4. **更新 README**：在"当前已收录"表末尾追加新行
+FIFA playlist 会**回填已收录的旧比赛换新 ID**，直接 `--yes-playlist` 必然下出重复文件。**正确流程**：
 
-详细命令见 README.md 第 60-108 行。
+1. 先 `yt-dlp --flat-playlist --print "%(id)s\t%(title)s"` 拿全 playlist 元数据
+2. 与 `D:\2026-worldcup\*.mp4` 已落地文件名的 `[VIDEO_ID]` 做集合差集
+3. 只对差集里的 video_id 各跑一次**单条** `yt-dlp <url>`，下到终态文件名
+4. **`--no-overwrites` 防不住"新 ID 重传"**，必须靠 ID 集合差集
+
+详细命令见 README.md 第 60-108 行 + SKILL.md（`add-new-highlight`）。
 
 ## 环境依赖
 

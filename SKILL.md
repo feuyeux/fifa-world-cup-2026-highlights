@@ -1,6 +1,6 @@
 ---
 name: add-new-highlight
-description: Pull new FIFA World Cup 2026 highlight videos from the official YouTube playlist into D:\2026-worldcup, dedup by YouTube [VIDEO_ID], download directly to final filename (M{NN} {Home}-{Away} {H}-{A} [{ID}].mp4 — never the yt-dlp "NN - Highlights" middle state), and append a row to README.md. Use when the user asks to 拉新视频 / 补全集锦 / 同步播放列表 / refresh highlights.
+description: Pull new FIFA World Cup 2026 highlight videos from the official YouTube playlist into D:\2026-worldcup. MANDATORY dedup gate: ALWAYS `--flat-playlist` first, build (existing VIDEO_ID) ∪ (new playlist VIDEO_ID) set diff, and download ONLY the diff via single-video `yt-dlp <url>` calls — NEVER `--yes-playlist` (the playlist re-uploads already-archived matches with new IDs, e.g. M67-M72 appeared as fresh playlist entries after M73-M79 were first released). Direct download to final filename `M{NN} {Home}-{Away} {H}-{A} [{ID}].mp4` (no intermediate "NN - Highlights" state). Append row to README.md. Triggered by: 拉新视频 / 补全集锦 / 同步播放列表 / refresh highlights.
 ---
 
 # 拉取 FIFA World Cup 2026 比赛集锦新视频
@@ -11,6 +11,7 @@ description: Pull new FIFA World Cup 2026 highlight videos from the official You
 
 ## 关键约定（必须遵守）
 
+- **⚠️ 第 0 步：先 `--flat-playlist` 比对 VIDEO_ID 再决定下哪些**。FIFA playlist 会**回填已收录的旧比赛换新 ID**（实测：拉 M73-M79 时，playlist #8/9/10 是 M71/M72/M69 的新 ID 重传，#11/12/13 是 M70/M68/M67 的新 ID 重传 — 共 6 条"假新"）。如果直接 `--yes-playlist`，会把已收录的 6 场当成新比赛再下一遍，浪费带宽 + 落一堆重复文件。**正确流程**：先 `yt-dlp --flat-playlist --print "%(id)s\t%(title)s"` 拿全 playlist → 与 `existing VIDEO_ID` 做集合差集 → **只对差集里那 N 个 video_id 各跑一次单条 `yt-dlp <url>`**。`--no-overwrites` 防不住"新 ID 重传"，必须靠 ID 集合差集。
 - **去重判据 = YouTube 视频 ID**，写在文件名 `[\w_-]{11}` 段里。**不**用"主队+比分"判重——多场可能同主队或同比分，ID 才是唯一键。
 - **下载即终态命名**：用 yt-dlp 的 `-o` 直接落 `M{NN} {主队}-{客队} {比分} [{VIDEO_ID}].mp4`，**不**先下到 `NN - Highlights ｜ ...` 中间态再 os.rename。中途断电/中断也不会留 .part 残骸。
 - **默认用 `-S "res:720"`** 而非默认 1080p：1080p AV1 + Opus 单条 40-60MB、且并发时单进程速度被压到 50-75 KiB/s；720p 单条 17-35MB、5 并发单进程 ~600 KiB/s、120s 内下完，画质对比赛集锦完全够用。
@@ -203,6 +204,7 @@ with open(fp, 'w', encoding='utf-8') as f:
 - **yt-dlp 标题里"胜者在前、比分胜-负"**——视频写 `Colombia 3-1 Uzbekistan`、赛程表写 `乌兹别克斯坦 vs 哥伦比亚`、比分按主-客方向 = `1-3`。**重命名时要从赛程表主客顺序反过来**，主队输了的场次比分方向也要翻。
 - **私享/已删条目** `--flat-playlist` 拿到的 title 是字面 `NA`，无法定位 M{NN}，跳过并报告。
 - **同一场被重新上传**（视频 ID 变）保留旧文件 + 新增一行，README 靠 `[VIDEO_ID]` 区分；不要去重删旧。
+- **淘汰赛阶段（1/16、1/8、半决赛、决赛）继续 M{NN} 编号续编**（72 场小组赛后从 M73 起），文件名前缀永不嵌 stage 标签（R16/QF/SF/F 都不写进文件名），stage 区分靠 README 表格的"阶段"列。点球胜负比分格式用 `(胜者总)主-客(胜者总)` — 例：M75 `Germany-Paraguay (3)1-1(4)`、M76 `Netherlands-Morocco (2)1-1(3)`，与 FIFA YouTube 标题里 FIFA 写的格式一致。
 - **`--cookies` 间歇性报 `FileNotFoundError` 但 cookies 文件实际存在**（实测 M53 那次：路径 `D:\download\www.youtube.com_cookies.txt` 1609 bytes 在的，yt-dlp `cookies.py:1305` 还是抛 No such file）。**症状**：stderr 出现 `FileNotFoundError: [Errno 2] No such file or directory: '/d/download/www.youtube.com_cookies.txt'`，视频流本身能下到 47% 左右时进程 rc=1 退出、留下 `.part` 残骸。**根因疑似**：yt-dlp 早期 cookies 解析阶段路径转换异常，与 git-bash 的 MSYS 路径转发有关。**修复**：下次批量下载时直接 `--no-cookies`（公开集锦不要求登录，YouTube 对未登录请求只发低码率但仍可下载）。如果必须保留 cookies，单独文件用 `with open(p,'rb').read()` 校验实际可读后重试；或换 Windows 原生 cmd 跑 yt-dlp 而不是 git-bash。
 - **yt-dlp 退出阶段 `save_cookies()` 也可能抛 `FileNotFoundError` → rc=1**，但此时 download + Merger 都已完成，**视频文件正常落地**。**判定标准**：`os.path.exists(目标.mp4)` 且大小 > 5 MB 即视为成功，不要被 rc=1 误导去重下。根因同上（MSYS 路径转换在 `__exit__` 阶段再次异常）。**配套**：`os.path.exists` 大小 > 5 MB 视为成功时**仍然要 `taskkill //F //IM yt-dlp.exe`** 清理可能残留的 .part（虽然本次测试几乎不发生）。
 - **yt-dlp 并发数 5 最优**：单进程 ~600 KiB/s；10 并发被压到 50-75 KiB/s 反而更慢，且 5 分钟 timeout 容易把 .part 残骸留一半。脚本里 5 个 Popen/terminal background 同时跑，120s 内全部下完 17-25 MB 的 720p 集锦。如果想做"一次性补很多"，分批 5 个是平衡点。
