@@ -1,8 +1,6 @@
 # FIFA World Cup 2026™ Match Highlights
 
-`D:\2026-worldcup\` 中存放从 YouTube 播放列表
-[Match Highlights | FIFA World Cup 2026™](https://www.youtube.com/watch?v=gy8h5JJ2b_E&list=PLBRLtDhTHh5o)
-下载的所有比赛集锦视频。
+`D:\2026-worldcup\` 中存放从 YouTube 播放列表 <https://www.youtube.com/playlist?list=PLBRLtDhTHh5o>  下载的所有比赛集锦视频。
 
 赛程出处：`D:\coding\fifa-world-cup-2026\schedule\match schedule.md`
 
