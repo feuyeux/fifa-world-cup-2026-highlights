@@ -101,13 +101,13 @@ M{赛事编号} {主队}-{客队} {主队比分}-{客队比分} [{YouTube 视频
 | M71 | 阿尔及利亚 - 奥地利 | 3-3 | J | 06/28 10:00 | `M71 Algeria-Austria 3-3 [5Mvh0mqY8ik].mp4` |
 | M72 | 约旦 - 阿根廷 | 1-3 | J | 06/28 10:00 | `M72 Jordan-Argentina 1-3 [M6mpXtMm93M].mp4` |
 | M73 | 南非 - 加拿大 | 0-1 | 1/16 | 06/29 03:00 | `M73 South Africa-Canada 0-1 [uv-FSqzHXAo].mp4` |
-| M74 | 巴西 - 日本 | 2-1 | 1/16 | 06/30 01:00 | `M74 Brazil-Japan 2-1 [Fd_KYjbmws4].mp4` |
-| M75 | 德国 - 巴拉圭 | (3)1-1(4) | 1/16 | 06/30 04:30 | `M75 Germany-Paraguay (3)1-1(4) [Gw6vNwAvkTs].mp4` |
-| M76 | 荷兰 - 摩洛哥 | (2)1-1(3) | 1/16 | 06/30 09:00 | `M76 Netherlands-Morocco (2)1-1(3) [vdnhUnGHwco].mp4` |
-| M77 | 科特迪瓦 - 挪威 | 1-2 | 1/16 | 07/01 01:00 | `M77 Côte d'Ivoire-Norway 1-2 [ATzmoebQMj0].mp4` |
-| M78 | 法国 - 瑞典 | 3-0 | 1/16 | 07/01 05:00 | `M78 France-Sweden 3-0 [A7pgChEIFTg].mp4` |
+|| M74 | 德国 - 巴拉圭 | (3)1-1(4) | 1/16 | 06/30 04:30 | `M74 Germany-Paraguay (3)1-1(4) [Gw6vNwAvkTs].mp4` |
+|| M75 | 荷兰 - 摩洛哥 | (2)1-1(3) | 1/16 | 06/30 09:00 | `M75 Netherlands-Morocco (2)1-1(3) [vdnhUnGHwco].mp4` |
+|| M76 | 巴西 - 日本 | 2-1 | 1/16 | 06/30 01:00 | `M76 Brazil-Japan 2-1 [Fd_KYjbmws4].mp4` |
+|| M77 | 法国 - 瑞典 | 3-0 | 1/16 | 07/01 05:00 | `M77 France-Sweden 3-0 [A7pgChEIFTg].mp4` |
+|| M78 | 科特迪瓦 - 挪威 | 1-2 | 1/16 | 07/01 01:00 | `M78 Côte d'Ivoire-Norway 1-2 [ATzmoebQMj0].mp4` |
 | M79 | 墨西哥 - 厄瓜多尔 | 2-0 | 1/16 | 07/01 09:00 | `M79 Mexico-Ecuador 2-0 [t-miz8tN7Qw].mp4` |
-| M80 | 英格兰 - 刚果民主共和国 | _待上传_ | 1/16 | 07/02 00:00 | _尚未踢完 / FIFA 未上传_ |
+| M80 | 英格兰 - 刚果民主共和国 | 2-1 | 1/16 | 07/02 00:00 | _FIFA 未上传 playlist_ |
 | M81 | 美国 - 波黑 | 2-0 | 1/16 | 07/02 08:00 | `M81 USA-Bosnia And Herzegovina 2-0 [SGQpzA9qcwk].mp4` |
 | M82 | 比利时 - 塞内加尔 | 3-2 | 1/16 | 07/02 04:00 | `M82 Belgium-Senegal 3-2 [PsPQkfngzV8].mp4` |
 | M83 | 葡萄牙 - 克罗地亚 | 2-1 | 1/16 | 07/03 07:00 | `M83 Portugal-Croatia 2-1 [jxU1VT5YXXE].mp4` |
@@ -121,7 +121,7 @@ M{赛事编号} {主队}-{客队} {主队比分}-{客队比分} [{YouTube 视频
 
 | 编号 | 比赛 | 比分 | 阶段 | 时间 (BJT) | 文件 |
 |:--:|:--|:--:|:--:|:--|:--|
-| M89 | 德国 - 法国 | 1-0 | 1/8 | 07/05 05:00 | `M89 Germany-France 1-0 [4HZCeb88uSI].mp4` |
+| M89 | 巴拉圭 - 法国 | 0-1 | 1/8 | 07/05 05:00 | `M89 Paraguay-France 0-1 [4HZCeb88uSI].mp4` |
 | M90 | 加拿大 - 摩洛哥 | 0-3 | 1/8 | 07/05 01:00 | `M90 Canada-Morocco 0-3 [sAYjtcpoaf0].mp4` |
 | M91 | 巴西 - 挪威 | 1-2 | 1/8 | 07/06 04:00 | `M91 Brazil-Norway 1-2 [42ovN5rW79U].mp4` |
 | M92 | 墨西哥 - 英格兰 | 2-3 | 1/8 | 07/06 08:00 | `M92 Mexico-England 2-3 [ydx1L0aDj_c].mp4` |
@@ -138,11 +138,12 @@ M{赛事编号} {主队}-{客队} {主队比分}-{客队比分} [{YouTube 视频
 
 **未收录** — playlist 计数与缺漏情况：
 - **小组赛（72 场）**：71/72。缺 M36 突尼斯-日本（F 组，06/22 11:00 — 球已踢完但 FIFA 还没传 playlist，下轮拉新时先 `--flat-playlist` 一次确认是否已上传）。
-- **1/16 决赛（16 场）**：11/16。已收录 M73-M79、M81-M88。**M80 英格兰-刚果民主共和国**（07/02 00:00）FIFA 尚未上传。
+- **1/16 决赛（16 场）**：11/16。已收录 M73-M79、M81-M88。**M80 英格兰 2-1 刚果民主共和国**（07/02 00:00）FIFA 已踢完但 playlist 未上传。
 - **1/8 决赛（8 场）**：8/8 ✅ 已收录 M89-M96。
-- **1/4 决赛（4 场）**：1/4。已收录 M97 法国-摩洛哥。剩 3 场：M98（赛事 93 胜方 vs 赛事 94 胜方，07/11 03:00）、M99（07/12 05:00）、M100（07/12 09:00），FIFA 尚未上传。
-- **半决赛、决赛**：0/3。FIFA 尚未上传。
-- **FIFA 错标条目已修正**：playlist index #1 (vid `4HZCeb88uSI`) 原标题 "Paraguay 0-1 France"（描述提到 Mbappe 进球 + 1-0 + 7/4 + Round of 16），FIFA 把 M89 德国-法国 集锦错标为 Paraguay-France。**已按真实比赛内容归位为 `M89 Germany-France 1-0`**（download → 落地 17.0 MiB / 129s / 720p AV1）。原 README "未收录" 段的疑似错标警告删除。
+- **1/4 决赛（4 场）**：1/4。已收录 M97 法国-摩洛哥。FIFA standings 显示 **M98 西班牙 2-1 比利时**（07/11 03:00）已踢完但 playlist 未上传。剩 2 场待踢：M99 挪威 vs 英格兰（07/12 05:00）、M100 阿根廷 vs 瑞士（07/12 09:00）。
+- **半决赛、决赛**：0/3。FIFA standings 显示 M101 法国 vs 西班牙（07/15 03:00）已排好但未踢，剩 4 场按 schedule。
+- **FIFA 错标条目已撤回**：上一版我误把 playlist index #1 (vid `4HZCeb88uSI`) 当作 FIFA 错标（标题 "Paraguay 0-1 France" + 描述 "Mbappe 进球 + 1-0 + Round of 16 + July 4"）。FIFA 官方 standings 确认这就是真实的 **M89 巴拉圭 0-1 法国**（Round of 16 / 1/8 决赛）。**撤销上次「错标修正」**，文件已重命名为 `M89 Paraguay-France 0-1`。
+- **M{NN} 编号对齐 FIFA 官方 standings（bracket order）**：之前按赛程表 `match schedule.md` 的时间排序编号，FIFA 官方按 bracket 位置编号，两者差异在 M74-M78（巴西-日本、德国-巴拉圭、荷兰-摩洛哥、法国-瑞典、科特迪瓦-挪威 五场互换）。本次按 FIFA 官方重排 disk + README。
 - 7 条 NA（playlist 末尾 #96-#102：6 条已被上传者删除 + 1 条 FIFA 私享）需上传者账号 cookies，无法用本工作流下载。
 
 ---
