@@ -14,9 +14,9 @@
 M{赛事编号} {主队}-{客队} {主队比分}-{客队比分} [{YouTube 视频 ID}].mp4
 ```
 
-- **`M{赛事编号}`** — 与赛程表 `match schedule.md` 中的 `全部 72 场 小组赛` 表的编号一致（01 = 揭幕战 墨西哥 vs 南非，23 = 葡萄牙 vs 刚果民主共和国 …）
+- **`M{赛事编号}`** — 与赛程表 `match schedule.md` 一致：小组赛为 M01–M72，淘汰赛从 M73 起跨阶段续编；文件名前缀始终只写 `M{数字}`，阶段由 README 表格的“小组/阶段”列区分
 - **`主队-客队`** — 与赛程表同行的 主队/客队 一致，按 主队在前
-- **`比分`** — 从 YouTube 视频标题里读出的最终比分
+- **`比分`** — 最终比分，按赛程表主队-客队方向书写；点球决胜使用 `(胜者总)主-客(胜者总)`，例如 `(3)1-1(4)`
 - **`[YouTube 视频 ID]`** — 11 位视频 ID（如 `gy8h5JJ2b_E`），保留用于核对来源
 
 文件按赛事编号升序排列，恰好等同于按比赛时间先后排列。
@@ -25,7 +25,7 @@ M{赛事编号} {主队}-{客队} {主队比分}-{客队比分} [{YouTube 视频
 
 ---
 
-## 当前已收录（102 / 100 playlist 公开，72 场小组赛 + 16 场 1/16 决赛 + 8 场 1/8 决赛 + 4 场 1/4 决赛 + 2 场半决赛）
+## 当前已收录（102 场：playlist 100 条 + playlist 外 FIFA 频道补传 2 条）
 
 | 编号 | 比赛 | 比分 | 小组 | 时间 (BJT) | 文件 |
 |:--:|:--|:--:|:--:|:--|:--|
@@ -102,11 +102,11 @@ M{赛事编号} {主队}-{客队} {主队比分}-{客队比分} [{YouTube 视频
 | M71 | 阿尔及利亚 - 奥地利 | 3-3 | J | 06/28 10:00 | `M71 Algeria-Austria 3-3 [5Mvh0mqY8ik].mp4` |
 | M72 | 约旦 - 阿根廷 | 1-3 | J | 06/28 10:00 | `M72 Jordan-Argentina 1-3 [M6mpXtMm93M].mp4` |
 | M73 | 南非 - 加拿大 | 0-1 | 1/16 | 06/29 03:00 | `M73 South Africa-Canada 0-1 [uv-FSqzHXAo].mp4` |
-|| M74 | 德国 - 巴拉圭 | (3)1-1(4) | 1/16 | 06/30 04:30 | `M74 Germany-Paraguay (3)1-1(4) [Gw6vNwAvkTs].mp4` |
-|| M75 | 荷兰 - 摩洛哥 | (2)1-1(3) | 1/16 | 06/30 09:00 | `M75 Netherlands-Morocco (2)1-1(3) [vdnhUnGHwco].mp4` |
-|| M76 | 巴西 - 日本 | 2-1 | 1/16 | 06/30 01:00 | `M76 Brazil-Japan 2-1 [Fd_KYjbmws4].mp4` |
-|| M77 | 法国 - 瑞典 | 3-0 | 1/16 | 07/01 05:00 | `M77 France-Sweden 3-0 [A7pgChEIFTg].mp4` |
-|| M78 | 科特迪瓦 - 挪威 | 1-2 | 1/16 | 07/01 01:00 | `M78 Côte d'Ivoire-Norway 1-2 [ATzmoebQMj0].mp4` |
+| M74 | 德国 - 巴拉圭 | (3)1-1(4) | 1/16 | 06/30 04:30 | `M74 Germany-Paraguay (3)1-1(4) [Gw6vNwAvkTs].mp4` |
+| M75 | 荷兰 - 摩洛哥 | (2)1-1(3) | 1/16 | 06/30 09:00 | `M75 Netherlands-Morocco (2)1-1(3) [vdnhUnGHwco].mp4` |
+| M76 | 巴西 - 日本 | 2-1 | 1/16 | 06/30 01:00 | `M76 Brazil-Japan 2-1 [Fd_KYjbmws4].mp4` |
+| M77 | 法国 - 瑞典 | 3-0 | 1/16 | 07/01 05:00 | `M77 France-Sweden 3-0 [A7pgChEIFTg].mp4` |
+| M78 | 科特迪瓦 - 挪威 | 1-2 | 1/16 | 07/01 01:00 | `M78 Côte d'Ivoire-Norway 1-2 [ATzmoebQMj0].mp4` |
 | M79 | 墨西哥 - 厄瓜多尔 | 2-0 | 1/16 | 07/01 09:00 | `M79 Mexico-Ecuador 2-0 [t-miz8tN7Qw].mp4` |
 | M80 | 英格兰 - 刚果民主共和国 | 2-1 | 1/16 | 07/02 00:00 | `M80 England-Congo DR 2-1 [T6MYUQgpCv8].mp4` |
 | M81 | 美国 - 波黑 | 2-0 | 1/16 | 07/02 08:00 | `M81 USA-Bosnia And Herzegovina 2-0 [SGQpzA9qcwk].mp4` |
@@ -172,7 +172,7 @@ M{赛事编号} {主队}-{客队} {主队比分}-{客队比分} [{YouTube 视频
 - 音频：原比赛视频自带现场音 + 解说，过场卡配静音轨使 concat 平滑。
 
 | 文件 | 大小 | 时长 | 场次 |
-|:--|:--:|:--:|:--|
+|:--|:--:|:--:|:--:|:--|
 | `Spain 全部 7 场比赛集锦.mp4` | 266.7 MB | 15.61 min | M14 → M38 → M64 → M84 → M93 → M98 → M101 |
 | `Argentina 全部 7 场比赛集锦.mp4` | 279.8 MB | 15.61 min | M19 → M43 → M72 → M86 → M95 → M100 → M102 |
 
@@ -180,53 +180,28 @@ M{赛事编号} {主队}-{客队} {主队比分}-{客队比分} [{YouTube 视频
 
 ## 补全新视频的工作流
 
-### 1. 重新拉取播放列表（保留已下载的、只下新的）
+FIFA playlist 会回填已收录比赛的新视频 ID。因此**禁止**对 playlist 使用 `--yes-playlist`：`--no-overwrites` 无法阻止新 ID 的重复下载。
+
+1. 用 `--flat-playlist --print "%(id)s\t%(title)s"` 获取 playlist 元数据。
+2. 从 `D:\2026-worldcup\*.mp4` 文件名提取已落地的 `[VIDEO_ID]`，计算 playlist ID 与已有 ID 的差集。
+3. 仅对差集中的每个 ID 单条下载，直接用 `-o` 写入终态文件名；不要先下载为 playlist 标题再重命名。
+4. 按赛程表确认 M 编号、主客顺序和比分方向，追加 README 表格行并更新收录统计。
 
 ```bash
-cd /d/2026-worldcup
+# 仅拉取元数据；不要使用 --yes-playlist 下载
+yt-dlp --no-update --flat-playlist --no-warnings \
+  --print "%(id)s\t%(title)s" \
+  "https://www.youtube.com/playlist?list=PLBRLtDhTHh5o"
 
-yt-dlp --no-update \
+# 对确认属于差集的一条视频执行一次；替换占位符
+yt-dlp --no-update --no-cookies \
   --js-runtimes "node:D:\\zoo\\nodejs\\node.exe" \
-  --cookies "/d/download/www.youtube.com_cookies.txt" \
-  -f "bv*+ba/b" --merge-output-format mp4 \
-  -S "res:720" \
-  --yes-playlist \
-  -o "%(playlist_index)02d - %(title)s [%(id)s].%(ext)s" \
-  --no-overwrites --ignore-errors \
-  "https://www.youtube.com/watch?v=gy8h5JJ2b_E&list=PLBRLtDhTHh5o"
+  -f "bv*+ba/b" --merge-output-format mp4 -S "res:720" \
+  -o "M{NN} {Home}-{Away} {H-A} [{VIDEO_ID}].%(ext)s" \
+  "https://www.youtube.com/watch?v={VIDEO_ID}"
 ```
 
-`--no-overwrites` 会跳过已下载的视频，新的会落到 `D:\2026-worldcup\` 下，文件名仍是 yt-dlp 默认的
-`NN - Highlights ｜ ... ｜ FIFA World Cup 2026™ [VIDEO_ID].mp4`。
-
-### 2. 对照赛程表查赛事编号
-
-打开 `D:\coding\fifa-world-cup-2026\schedule\match schedule.md`，从
-`## 全部 72 场 小组赛（按日期排序）` 表格（4 列：日期/主队/客队/小组，**无 `#` 列**）里按行号 1-based 推 M 编号（第 1 行 = M01，第 N 行 = M{N}），找到这场比赛的主队、客队、最终比分。
-
-### 3. 重命名
-
-新文件名遵循上面的命名规范：
-
-```
-{原文件名}  →  M{赛事编号} {主队}-{客队} {比分} [{VIDEO_ID}].mp4
-```
-
-例：
-
-```
-33 - Highlights ｜ Germany 4-2 Côte d'Ivoire ｜ FIFA World Cup 2026™ [abc123XYZ].mp4
-                                                   ↓
-M33 Germany-Côte d'Ivoire 4-2 [abc123XYZ].mp4
-```
-
-> 注：yt-dlp 默认会把胜者放前面、比分为胜-负，所以「主队-客队」和「比分方向」要按赛程表校正：
-> 如果赛程表写 `德国 vs 科特迪瓦` 但视频标题写 `Germany 4-2 Côte d'Ivoire`（德国是主队，赢了），
-> 那就对应 `M33 Germany-Côte d'Ivoire 4-2` —— 主队在前、比分也按主-客方向。如果赛程表里主队是科特迪瓦则反过来。
-
-### 4. 把新行追加到本 README 的"当前已收录"表
-
-在表格最后追加一行，保持编号升序。
+`playlist_index` 不等于 M 编号，必须以视频中的球队和赛程表定位。若 FIFA 对同一场重新上传（ID 改变），保留旧文件和旧表格行，并追加新 ID 的记录。完整脚本和补传识别步骤见 `SKILL.md`。
 
 ---
 
@@ -238,16 +213,14 @@ M33 Germany-Côte d'Ivoire 4-2 [abc123XYZ].mp4
   ```
 - **Node.js**（用于 JS challenge solver）：`D:\zoo\nodejs\node.exe`
 - **ffmpeg**（用于音视频合并）：`ffmpeg 8.1-essentials`
-- **YouTube 认证 cookie**：`D:\download\www.youtube.com_cookies.txt`
-  （通过 Chrome 扩展 "Get cookies.txt LOCALLY" 从登录态 YouTube 导出，过期需重新导出）
+- **YouTube cookies（可选）**：`D:\download\www.youtube.com_cookies.txt`。公开 FIFA 集锦默认使用 `--no-cookies`；只有确有认证需求时才使用手动导出的 cookies.txt。
 
 ---
 
 ## 已知坑
 
-- **Chrome 127+ App-Bound Encryption** 让 `--cookies-from-browser chrome` 失败（DPAPI 密钥缺失）。手动导出 cookies.txt 是唯一可靠路径。
-- YouTube 播放列表里的项目 24-31 是 FIFA 后传的私享视频，**无法用本工作流补齐**，除非有上传者账号的 cookies。
-- 下载默认走 1080p AV1 + Opus，单集约 30-60 MB。如果带宽/磁盘紧张，可以加 `-S "res:720"` 让 yt-dlp 优先选 720p（实测 17-35 MB，单条 5x 快、画质对比赛集锦够用 — **建议默认加**）。
-- **yt-dlp 退出时报 `FileNotFoundError: '/d/download/www.youtube.com_cookies.txt'` → rc=1**，但 download + Merger 都已完成、视频文件正常落地。**判定标准**：`os.path.exists(目标.mp4)` 且大小 > 5 MB 即视为成功；不要被 rc=1 误导去重下。根因疑似 yt-dlp `__exit__` 阶段 `save_cookies()` 写回时 MSYS 路径转换异常，与 `--cookies` 读取阶段的 `/d/...` 是同一路径。
+- **Chrome 127+ App-Bound Encryption** 让 `--cookies-from-browser chrome` 失败；需要认证时使用手动导出的 cookies.txt。公开 FIFA 集锦无需 cookies，避免 MSYS 路径转换导致的 `FileNotFoundError`。
+- 默认使用 `-S "res:720"`，视频通常为 17–35 MB；去掉该参数才会优先选择更高分辨率。
+- **M36 / M80 是 playlist 外补传**：不要被 YouTube 网页头“104 个视频”误导。以 `--flat-playlist` 实际返回的 ID 为准；发现候选补传时，先以 `--dump-single-json` 验证 FIFA 频道、公开状态及 description 中的比赛日期/阶段，再单条下载。
 - **yt-dlp 并发数 5 最优**：单进程 ~600 KiB/s；10 并发被压到 50-75 KiB/s 反而更慢，且容易 timeout。脚本里起 5 个 Popen/terminal background 跑，120s 内全部下完 17-25 MB 的 720p 集锦。
 - 当同一场集锦被 FIFA 重新上传时（视频 ID 会变），需要保留旧文件不删并新增一行，README 里靠 `[VIDEO_ID]` 字段区分。
