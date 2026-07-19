@@ -18,3 +18,5 @@ __pycache__/
 # are excluded from git. The repository ships the manifest (README/AGENTS/SKILL)
 # only. See README § "命名规范" for the file format.
 *.mp4
+
+.cache/  # yt-dlp flat-playlist cache (regenerable)

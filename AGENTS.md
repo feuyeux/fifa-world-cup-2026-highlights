@@ -37,6 +37,7 @@ FIFA playlist 会**回填已收录的旧比赛换新 ID**，直接 `--yes-playli
 ## 已知坑
 
 - Chrome 127+ App-Bound Encryption 导致 `--cookies-from-browser chrome` 失效，必须手动导 cookies.txt
-- 视频 24-31 是 FIFA 私享视频，无法通过本工作流补齐
-- 下载默认 1080p AV1 + Opus，单集约 30-60 MB；可加 `-S "res:720"` 降为 720p
-- 同一场集锦被重新上传时（视频 ID 变），保留旧文件并新增行，靠 `[VIDEO_ID]` 区分
+- 公开 FIFA 集锦不强制登录（`--no-cookies` 默认开）；MSYS 路径转换坑下保留 `--cookies` 易触发 `__exit__` FileNotFound 误报。
+- 视频下载默认 720p av1/opus（`S "res:720"`），单集约 15-25 MB、3-5x 快于 1080p；如需 1080p 把 `-S "res:720"` 去掉即可。
+- 同一场集锦被重新上传时（视频 ID 变），保留旧文件并新增行，靠 `[VIDEO_ID]` 区分。
+- **playlist 范围外补传**：FIFA 官方 playlist `PLBRLtDhTHh5o` 公开 100 条全部收录；M36 / M80 走 FIFA 频道**非 playlist** 公开上传（vid `V7z6uzD91Ao` / `T6MYUQgpCv8`），用 `--dump-single-json` 验证 description + channel 后单条 `yt-dlp` 下到终态文件名。详见 `SKILL.md`（add-new-highlight）末尾"已知补传案例（2026-07-19 M36 / M80）"。

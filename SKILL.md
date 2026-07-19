@@ -7,7 +7,7 @@ description: Pull new FIFA World Cup 2026 highlight videos from the official You
 
 ## 触发条件
 
-用户说"拉新视频"/"补全集锦"/"同步播放列表"/"刷新一下集锦"等。
+用户说 **playlist 范围 vs disk 范围**：FIFA 官方 playlist 公开 100 条全部已收录（M01-M72 + M73-M102）。M36 / M80 是 playlist **外**的 FIFA 频道公开上传，需要绕过 playlist 用单条 `--dump-single-json` 验证 description 归属后走单条下载。"拉新视频"/"补全集锦"/"同步播放列表"/"刷新一下集锦"等。
 
 ## 关键约定（必须遵守）
 
@@ -208,3 +208,32 @@ with open(fp, 'w', encoding='utf-8') as f:
 - **`--cookies` 间歇性报 `FileNotFoundError` 但 cookies 文件实际存在**（实测 M53 那次：路径 `D:\download\www.youtube.com_cookies.txt` 1609 bytes 在的，yt-dlp `cookies.py:1305` 还是抛 No such file）。**症状**：stderr 出现 `FileNotFoundError: [Errno 2] No such file or directory: '/d/download/www.youtube.com_cookies.txt'`，视频流本身能下到 47% 左右时进程 rc=1 退出、留下 `.part` 残骸。**根因疑似**：yt-dlp 早期 cookies 解析阶段路径转换异常，与 git-bash 的 MSYS 路径转发有关。**修复**：下次批量下载时直接 `--no-cookies`（公开集锦不要求登录，YouTube 对未登录请求只发低码率但仍可下载）。如果必须保留 cookies，单独文件用 `with open(p,'rb').read()` 校验实际可读后重试；或换 Windows 原生 cmd 跑 yt-dlp 而不是 git-bash。
 - **yt-dlp 退出阶段 `save_cookies()` 也可能抛 `FileNotFoundError` → rc=1**，但此时 download + Merger 都已完成，**视频文件正常落地**。**判定标准**：`os.path.exists(目标.mp4)` 且大小 > 5 MB 即视为成功，不要被 rc=1 误导去重下。根因同上（MSYS 路径转换在 `__exit__` 阶段再次异常）。**配套**：`os.path.exists` 大小 > 5 MB 视为成功时**仍然要 `taskkill //F //IM yt-dlp.exe`** 清理可能残留的 .part（虽然本次测试几乎不发生）。
 - **yt-dlp 并发数 5 最优**：单进程 ~600 KiB/s；10 并发被压到 50-75 KiB/s 反而更慢，且 5 分钟 timeout 容易把 .part 残骸留一半。脚本里 5 个 Popen/terminal background 同时跑，120s 内全部下完 17-25 MB 的 720p 集锦。如果想做"一次性补很多"，分批 5 个是平衡点。
+
+
+## 已知补传案例（2026-07-19 M36 / M80）
+
+FIFA 官方 playlist `PLBRLtDhTHh5o` 已稳定 100 条、0 NA，但 FIFA 频道**另**有 2 条通过 playlist **外**的频道上传收录：
+- M36 突尼斯-日本 0-4（2026/06/22 12:00 BJT），vid `V7z6uzD91Ao`（2026-07-19 复测时 playlist 仅 100 条、YT 头"104 个视频"为旧值）
+- M80 英格兰-刚果民主共和国 2-1（2026/07/02 00:00 BJT），vid `T6MYUQgpCv8`
+
+**识别 / 补传流程**：
+
+```bash
+# 1. --dump-single-json 拿 description 第二行（{H} v {A} | FIFA WC 2026 | {date} | Post-game 模板）
+yt-dlp --no-update --dump-single-json --no-warnings "https://www.youtube.com/watch?v=<id>"
+# 检查: channel='FIFA' + availability='public' + description 日期与赛程 BJT-1 一致 + upload_date 在比赛次日
+
+# 2. 直接单条 yt-dlp 下到终态文件名（git-bash 三件套 + --no-cookies）
+cd /d/2026-worldcup && yt-dlp --no-update --no-cookies \
+  --js-runtimes "node:/c/Program Files/nodejs/node.exe" \
+  -f "bv*+ba/b" --merge-output-format mp4 -S "res:720" \
+  -o "M{NN} {Home}-{Away} {H-A} [{VID}].mp4" \
+  "https://www.youtube.com/watch?v=<id>"
+
+# 3. 追加 README 表格行 + 更新"未收录"段（72/72、16/16、0 NA 注释）
+```
+
+**注意事项**：
+- 不要被 YouTube playlist 网页头"104 个视频"误导去 `--flat-playlist` 找第 101-104 条；实测仍只返 100 条。差额的 4 条里 2 条对应 M36/M80（已补传），剩 2 条可能是 system/test 视频。
+- `--no-cookies` 走公开访问对 FIFA 频道公开集锦 100% 够用；不要带 `--cookies` 走 MSYS 路径转换，否则 `__exit__` 误报 + `D:\d\2026-worldcup\` 鬼目录。
+- 文件名按赛程表主客顺序（home-away），比分按主客方向（home-away 视角），不翻转。
